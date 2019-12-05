@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     }
     
     //  fang ran comment
-// mjy comment
+// majingyi comment
 
 }
 
