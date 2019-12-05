@@ -1,4 +1,4 @@
-//
+﻿//
 //  ViewController.swift
 //  MyAccountappIOS
 //
@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     }
     
     //  fang ran comment
-
+// majingyi comment
 
 }
 
