@@ -9,23 +9,33 @@
 /* Begin PBXBuildFile section */
 		3C7444A82399489700EEAC81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7444A72399489700EEAC81 /* AppDelegate.swift */; };
 		3C7444AA2399489700EEAC81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7444A92399489700EEAC81 /* SceneDelegate.swift */; };
-		3C7444AC2399489700EEAC81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7444AB2399489700EEAC81 /* ViewController.swift */; };
+		3C7444AC2399489700EEAC81 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7444AB2399489700EEAC81 /* DetailsViewController.swift */; };
 		3C7444AF2399489700EEAC81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C7444AD2399489700EEAC81 /* Main.storyboard */; };
 		3C7444B22399489700EEAC81 /* MyAccountappIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C7444B02399489700EEAC81 /* MyAccountappIOS.xcdatamodeld */; };
 		3C7444B42399489C00EEAC81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C7444B32399489C00EEAC81 /* Assets.xcassets */; };
 		3C7444B72399489C00EEAC81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C7444B52399489C00EEAC81 /* LaunchScreen.storyboard */; };
+		3CCB7D74239F893B007EE4BE /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB7D73239F893B007EE4BE /* NewViewController.swift */; };
+		3CCB7D76239F8946007EE4BE /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB7D75239F8946007EE4BE /* ChartViewController.swift */; };
+		3CE87C92239F97AD00162BF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE87C91239F97AD00162BF4 /* ViewController.swift */; };
+		3CE87C94239F9F3700162BF4 /* LineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */; };
+		3CFA1C90239EFE4900461AAD /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA1C8F239EFE4900461AAD /* MainTabController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3C7444A42399489700EEAC81 /* MyAccountappIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAccountappIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C7444A72399489700EEAC81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C7444A92399489700EEAC81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3C7444AB2399489700EEAC81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3C7444AB2399489700EEAC81 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3C7444AE2399489700EEAC81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C7444B12399489700EEAC81 /* MyAccountappIOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAccountappIOS.xcdatamodel; sourceTree = "<group>"; };
 		3C7444B32399489C00EEAC81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C7444B62399489C00EEAC81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C7444B82399489C00EEAC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CCB7D73239F893B007EE4BE /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		3CCB7D75239F8946007EE4BE /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		3CE87C91239F97AD00162BF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTableViewCell.swift; sourceTree = "<group>"; };
+		3CFA1C8F239EFE4900461AAD /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +70,17 @@
 			children = (
 				3C7444A72399489700EEAC81 /* AppDelegate.swift */,
 				3C7444A92399489700EEAC81 /* SceneDelegate.swift */,
-				3C7444AB2399489700EEAC81 /* ViewController.swift */,
 				3C7444AD2399489700EEAC81 /* Main.storyboard */,
 				3C7444B32399489C00EEAC81 /* Assets.xcassets */,
 				3C7444B52399489C00EEAC81 /* LaunchScreen.storyboard */,
 				3C7444B82399489C00EEAC81 /* Info.plist */,
 				3C7444B02399489700EEAC81 /* MyAccountappIOS.xcdatamodeld */,
+				3CE87C91239F97AD00162BF4 /* ViewController.swift */,
+				3CFA1C8F239EFE4900461AAD /* MainTabController.swift */,
+				3C7444AB2399489700EEAC81 /* DetailsViewController.swift */,
+				3CCB7D73239F893B007EE4BE /* NewViewController.swift */,
+				3CCB7D75239F8946007EE4BE /* ChartViewController.swift */,
+				3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */,
 			);
 			path = MyAccountappIOS;
 			sourceTree = "<group>";
@@ -141,9 +156,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C7444AC2399489700EEAC81 /* ViewController.swift in Sources */,
+				3CE87C94239F9F3700162BF4 /* LineTableViewCell.swift in Sources */,
+				3C7444AC2399489700EEAC81 /* DetailsViewController.swift in Sources */,
 				3C7444A82399489700EEAC81 /* AppDelegate.swift in Sources */,
+				3CCB7D74239F893B007EE4BE /* NewViewController.swift in Sources */,
+				3CFA1C90239EFE4900461AAD /* MainTabController.swift in Sources */,
 				3C7444AA2399489700EEAC81 /* SceneDelegate.swift in Sources */,
+				3CCB7D76239F8946007EE4BE /* ChartViewController.swift in Sources */,
+				3CE87C92239F97AD00162BF4 /* ViewController.swift in Sources */,
 				3C7444B22399489700EEAC81 /* MyAccountappIOS.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

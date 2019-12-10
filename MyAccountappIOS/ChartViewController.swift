@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ChartViewController.swift
 //  MyAccountappIOS
 //
 //  Created by Ran FANG on 2019/12/10.
@@ -8,10 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ChartViewController: UIViewController {
 
-
-    
+    required init?(coder aDecoder:NSCoder){
+        super.init(coder:aDecoder)
+        tabBarItem = UITabBarItem(title:"Chart", image:UIImage(named:"chart"),tag:3)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +21,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-    @IBAction func startButton(_ sender: Any) {
-        
-        let mainTabController = storyboard?.instantiateViewController(identifier: "MainTabController") as! MainTabController
-        
-        mainTabController.selectedViewController = mainTabController.viewControllers?[0]
-        
-        present(mainTabController,animated:true,completion:nil)
-        
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
 
