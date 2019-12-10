@@ -16,6 +16,26 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         tabBarItem = UITabBarItem(title:"New", image:UIImage(named:"pencil"),tag:2)
     }
     
+    // segment
+    
+    var isExpense:Bool = true
+    @IBAction func incomeExpense(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            isExpense = false
+        }
+        else {
+            isExpense = true
+        }
+    }
+    
+    // title
+    @IBOutlet weak var titleTextField: UITextField!
+    var titleFinal:String=""
+    
+    // amount
+    @IBOutlet weak var amountTextField: UITextField!
+    var amountFinal:Double=0.00
+    
     // datePicker
     var year:String=""
     var month:String=""
@@ -125,6 +145,9 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        titleTextField.text=""
+        amountTextField.text=""
+        
         datePickerIsHidden(status:true)
         categoryPickerIsHidden(status:true)
         
@@ -150,6 +173,15 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
     }
     
     
-
+    @IBAction func doneNewBtn(_ sender: Any) {
+        let titleFinal=titleTextField.text!
+        let amountFinal = Double(amountTextField.text!)
+        let yearFinal = Int(year) ?? 0
+        let monthFinal = Int(month) ?? 0
+        let dayFinal = Int(day) ?? 0
+        let categoryFinal = categorySelected
+        print (" title: \(titleFinal) amount : \(amountFinal ?? 0) date: \(yearFinal) \(monthFinal) \(dayFinal)  category :\(categoryFinal) \(isExpense)")
+    }
+    
 
 }
