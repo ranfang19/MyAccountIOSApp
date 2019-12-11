@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
 
+    var id:Int=1
+    
     //Tab
     required init?(coder aDecoder:NSCoder){
         super.init(coder:aDecoder)
@@ -166,13 +169,14 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         self.categoryPicker?.dataSource = self
         pickerData = ["Transport", "Shopping", "Food", "Housing"]
         
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    
+
     @IBAction func doneNewBtn(_ sender: Any) {
         let titleFinal=titleTextField.text!
         let amountFinal = Double(amountTextField.text!)
@@ -180,7 +184,34 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         let monthFinal = Int(month) ?? 0
         let dayFinal = Int(day) ?? 0
         let categoryFinal = categorySelected
-        print (" title: \(titleFinal) amount : \(amountFinal ?? 0) date: \(yearFinal) \(monthFinal) \(dayFinal)  category :\(categoryFinal) \(isExpense)")
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let newLine = NSEntityDescription.insertNewObject(forEntityName: "Line", into: context)
+        newLine.setValue(amountFinal, forKey: "amount")
+        newLine.setValue(categoryFinal, forKey: "category")
+        newLine.setValue(dayFinal, forKey: "day")
+        newLine.setValue(isExpense, forKey: "expense")
+        newLine.setValue(monthFinal, forKey: "month")
+        newLine.setValue(titleFinal, forKey: "title")
+        newLine.setValue(yearFinal, forKey: "year")
+        newLine.setValue(id, forKey: "id")
+        
+        do {
+            try context.save()
+            print("Context saved")
+            id = id + 1
+        } catch {
+            print ("ERREUR : impossible de sauvgarder mon context")
+        }
+        
+        
+    }
+    
+
+
+    
+    @IBAction func backButton(_ sender: Any) {
     }
     
 

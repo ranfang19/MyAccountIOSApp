@@ -104,6 +104,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     private func setupView() {
         updateView()
     }
+    
         
     
     func pickerViewHiddenStatus(pvStatus:Bool) {
@@ -160,6 +161,8 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         monthData = monthArray[row]
     }
     
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -177,14 +180,14 @@ extension DetailsViewController: UITableViewDataSource {
             fatalError("Unexpected Index Path")
         }
 
+        
         // Fetch Modules
         let line = fetchedResultsController.object(at: indexPath)
 
         // Configure Cell
+        cell.dateLabel.text = "\(String(line.year)) / \(String(line.month)) / \(String(line.day))"
         cell.titleLabel.text = line.title
-        //cell.DateLabel.text = line.
         cell.amountLabel.text = String(line.amount)
-
         return cell
     }
 }
