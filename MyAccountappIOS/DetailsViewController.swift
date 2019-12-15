@@ -41,7 +41,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         let fetchRequest: NSFetchRequest<Line> = Line.fetchRequest()
 
         // Configure Fetch Request
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "year", ascending: false),NSSortDescriptor(key: "month", ascending: false),NSSortDescriptor(key: "day", ascending: false),NSSortDescriptor(key: "id", ascending: true)]
 
         // Create Fetched Results Controller
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -167,6 +167,18 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Perform Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        self.tableView.reloadData()
+    }
+    
 }
 
 extension DetailsViewController: UITableViewDataSource {
@@ -187,7 +199,15 @@ extension DetailsViewController: UITableViewDataSource {
         // Configure Cell
         cell.dateLabel.text = "\(String(line.year)) / \(String(line.month)) / \(String(line.day))"
         cell.titleLabel.text = line.title
-        cell.amountLabel.text = String(line.amount)
+        
+        if (line.expense==true) {
+            cell.amountLabel.text = "-\(String(line.amount))"
+        }
+        else if(line.expense==false){
+            cell.amountLabel.text = String(line.amount)
+        }
+        
+        
         return cell
     }
 }

@@ -21,7 +21,7 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
     
     // segment
     
-    var isExpense:Bool = true
+    var isExpense:Bool = false
     @IBAction func incomeExpense(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             isExpense = false
@@ -147,6 +147,7 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         titleTextField.text=""
         amountTextField.text=""
@@ -177,7 +178,7 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
     }
     
 
-    @IBAction func doneNewBtn(_ sender: Any) {
+    @IBAction func doneBtn(_ sender: Any) {
         let titleFinal=titleTextField.text!
         let amountFinal = Double(amountTextField.text!)
         let yearFinal = Int(year) ?? 0
@@ -200,19 +201,34 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         do {
             try context.save()
             print("Context saved")
+            self.showToast(message: "Context saved")
             id = id + 1
+            titleTextField.text=""
+            amountTextField.text=""
         } catch {
             print ("ERREUR : impossible de sauvgarder mon context")
         }
-        
-        
     }
     
+    func showToast(message : String) {
 
-
-    
-    @IBAction func backButton(_ sender: Any) {
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-150, width: 150, height: 35))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
     }
+    
     
 
 }
