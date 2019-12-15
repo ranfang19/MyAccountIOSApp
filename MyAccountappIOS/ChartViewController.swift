@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import Charts
+import CoreData
+
 
 class ChartViewController: UIViewController {
+    
 
+    @IBOutlet weak var lineChartView: LineChartView!
+    
+    
+    var numbers = [Double]()
+    
     required init?(coder aDecoder:NSCoder){
         super.init(coder:aDecoder)
         tabBarItem = UITabBarItem(title:"Chart", image:UIImage(named:"chart"),tag:3)
@@ -18,22 +27,51 @@ class ChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
+
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                if data.value(forKey: "amount") != nil {
+                //print(data.value(forKey: "amount")as! Double)
+                numbers.append(data.value(forKey: "amount") as! Double)
+                }
+          }
+            
+        } catch {
+            
+            print("Failed")
+        }
+        
+        
+        setChartValues()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    func setChartValues(_ count : Int = 20) {
+        var lineChartEntry = [ChartDataEntry]()
+        for i in 0..<numbers.count{
+            let value = ChartDataEntry(x:Double(i),y: Double(numbers[i]))
+            lineChartEntry.append(value)
+        }
+        
+        let line1 = LineChartDataSet(entries:lineChartEntry, label:"Number")
+        
+        let data = LineChartData()
+        data.addDataSet(line1)
+        
+        lineChartView.data = data
+        lineChartView.chartDescription?.text="My af"
     }
-    */
+
 
 }
+

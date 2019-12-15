@@ -171,14 +171,24 @@
                     <view key="view" contentMode="scaleToFill" id="1gJ-eA-Xog">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeR-hk-d87" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="121" width="374" height="182"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.85098039215686272" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="1dG-XP-Okk"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" id="PdX-3u-bwB"/>
+                    <connections>
+                        <outlet property="lineChartView" destination="aeR-hk-d87" id="egL-OO-dLi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfF-w9-cQT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="622" y="834"/>
+            <point key="canvasLocation" x="621.73913043478262" y="833.70535714285711"/>
         </scene>
         <!--New-->
         <scene sceneID="4JN-le-kPw">

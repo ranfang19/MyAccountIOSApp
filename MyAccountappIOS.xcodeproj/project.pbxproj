@@ -13,6 +13,8 @@
 		3C7444AF2399489700EEAC81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C7444AD2399489700EEAC81 /* Main.storyboard */; };
 		3C7444B22399489700EEAC81 /* MyAccountappIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C7444B02399489700EEAC81 /* MyAccountappIOS.xcdatamodeld */; };
 		3C7444B42399489C00EEAC81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C7444B32399489C00EEAC81 /* Assets.xcassets */; };
+		3CBC1BDE23A6C13600ED625D /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBC1BDB23A6C12900ED625D /* Charts.framework */; };
+		3CBC1BDF23A6C13600ED625D /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBC1BDB23A6C12900ED625D /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CCB7D74239F893B007EE4BE /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB7D73239F893B007EE4BE /* NewViewController.swift */; };
 		3CCB7D76239F8946007EE4BE /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB7D75239F8946007EE4BE /* ChartViewController.swift */; };
 		3CCE4EB423A0FB9A0015F5A9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CCE4EB323A0FB9A0015F5A9 /* Launch Screen.storyboard */; };
@@ -20,6 +22,37 @@
 		3CE87C94239F9F3700162BF4 /* LineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */; };
 		3CFA1C90239EFE4900461AAD /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA1C8F239EFE4900461AAD /* MainTabController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3CBC1BDA23A6C12900ED625D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CBC1BD523A6C12800ED625D /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
+			remoteInfo = Charts;
+		};
+		3CBC1BDC23A6C12900ED625D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CBC1BD523A6C12800ED625D /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
+			remoteInfo = ChartsTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3C463EE223A6BB3E00354087 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3CBC1BDF23A6C13600ED625D /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3C7444A42399489700EEAC81 /* MyAccountappIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAccountappIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +63,7 @@
 		3C7444B12399489700EEAC81 /* MyAccountappIOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAccountappIOS.xcdatamodel; sourceTree = "<group>"; };
 		3C7444B32399489C00EEAC81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C7444B82399489C00EEAC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CBC1BD523A6C12800ED625D /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		3CCB7D73239F893B007EE4BE /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		3CCB7D75239F8946007EE4BE /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		3CCE4EB323A0FB9A0015F5A9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -43,17 +77,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CBC1BDE23A6C13600ED625D /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C463EDF23A6BB3E00354087 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3C74449B2399489700EEAC81 = {
 			isa = PBXGroup;
 			children = (
+				3CBC1BD523A6C12800ED625D /* Charts.xcodeproj */,
 				3C7444A62399489700EEAC81 /* MyAccountappIOS */,
 				3C7444A52399489700EEAC81 /* Products */,
+				3C463EDF23A6BB3E00354087 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +129,15 @@
 			path = MyAccountappIOS;
 			sourceTree = "<group>";
 		};
+		3CBC1BD623A6C12800ED625D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CBC1BDB23A6C12900ED625D /* Charts.framework */,
+				3CBC1BDD23A6C12900ED625D /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,6 +148,7 @@
 				3C7444A02399489700EEAC81 /* Sources */,
 				3C7444A12399489700EEAC81 /* Frameworks */,
 				3C7444A22399489700EEAC81 /* Resources */,
+				3C463EE223A6BB3E00354087 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,12 +185,35 @@
 			mainGroup = 3C74449B2399489700EEAC81;
 			productRefGroup = 3C7444A52399489700EEAC81 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3CBC1BD623A6C12800ED625D /* Products */;
+					ProjectRef = 3CBC1BD523A6C12800ED625D /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3C7444A32399489700EEAC81 /* MyAccountappIOS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3CBC1BDB23A6C12900ED625D /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 3CBC1BDA23A6C12900ED625D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3CBC1BDD23A6C12900ED625D /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 3CBC1BDC23A6C12900ED625D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3C7444A22399489700EEAC81 /* Resources */ = {
