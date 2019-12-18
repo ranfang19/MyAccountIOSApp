@@ -13,7 +13,27 @@ import CoreData
 
 class ChartViewController: UIViewController {
     
-
+    var isExpense:Bool = false
+    @IBAction func incomeExpense(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            isExpense = false
+        }
+        else {
+            isExpense = true
+        }
+    }
+    
+    @IBAction func leftButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func rightButton(_ sender: UIButton) {
+    }
+    
+    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
+    
+    
+    
     @IBOutlet weak var lineChartView: LineChartView!
     
     

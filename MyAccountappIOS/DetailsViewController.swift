@@ -13,6 +13,8 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
 
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var incomeLabel: UILabel!
+    @IBOutlet weak var expenseLabel: UILabel!
     @IBOutlet weak var yearMonthPicker: UIPickerView!
     @IBOutlet weak var cancelPickerButton: UIButton!
     @IBOutlet weak var donePickerButton: UIButton!
@@ -29,6 +31,9 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     
     var yearData:String = "2019"
     var monthData:String = "Dec"
+    
+    var incomeTotal:Double = 0
+    var expenseTotal:Double = 0
     
     var lines = [Line](){
         didSet {
@@ -84,7 +89,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             if let error = error {
                 print("Unable to Load Persistent Store")
                 print("\(error), \(error.localizedDescription)")
-
+                
             } else {
                 self.setupView()
                 
@@ -95,7 +100,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                     print("Unable to Perform Fetch Request")
                     print("\(fetchError), \(fetchError.localizedDescription)")
                 }
-
+                
                 self.updateView()            }
         }
         
@@ -202,12 +207,14 @@ extension DetailsViewController: UITableViewDataSource {
         
         if (line.expense==true) {
             cell.amountLabel.text = "-\(String(line.amount))"
+            expenseTotal = expenseTotal + line.amount
         }
         else if(line.expense==false){
             cell.amountLabel.text = String(line.amount)
+            incomeTotal = incomeTotal + line.amount
         }
-        
-        
+        expenseLabel.text = String(expenseTotal)
+        incomeLabel.text = String(incomeTotal)
         return cell
     }
 }
