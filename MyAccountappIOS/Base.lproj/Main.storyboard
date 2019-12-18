@@ -194,33 +194,46 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3x-eF-E8B">
-                                <rect key="frame" x="152" y="139" width="42" height="21"/>
+                                <rect key="frame" x="157" y="139" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mont" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsu-yL-kmi">
-                                <rect key="frame" x="219" y="139" width="50" height="22"/>
+                                <rect key="frame" x="211" y="139" width="50" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iD-EZ-gQ7">
-                                <rect key="frame" x="34" y="138" width="18" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qmn-2y-YDQ">
+                                <rect key="frame" x="269" y="146" width="16" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="arrowtriangle.left.fill" catalog="system"/>
+                                <state key="normal" image="arrowtriangle.down.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="leftButton:" destination="nk8-De-06C" eventType="touchUpInside" id="92X-lX-kix"/>
+                                    <action selector="pickerButton:" destination="nk8-De-06C" eventType="touchUpInside" id="sZd-Jr-Zag"/>
+                                    <action selector="triangleButton:" destination="nk8-De-06C" eventType="touchUpInside" id="RDy-Dc-Snq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1S-zo-Ee0">
-                                <rect key="frame" x="362" y="139" width="18" height="22"/>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14I-nY-2wH">
+                                <rect key="frame" x="0.0" y="651" width="414" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaC-3w-dPc">
+                                <rect key="frame" x="31" y="613" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="arrowtriangle.right.fill" catalog="system"/>
+                                <state key="normal" title="Cancel"/>
                                 <connections>
-                                    <action selector="rightButton:" destination="nk8-De-06C" eventType="touchUpInside" id="fCw-Z9-X0W"/>
+                                    <action selector="cancelButton:" destination="nk8-De-06C" eventType="touchUpInside" id="GP2-iT-pls"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utU-pE-97V">
+                                <rect key="frame" x="344" y="613" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButton:" destination="nk8-De-06C" eventType="touchUpInside" id="lUg-jP-9Ua"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -229,8 +242,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" id="PdX-3u-bwB"/>
                     <connections>
+                        <outlet property="cancelButton" destination="IaC-3w-dPc" id="NDn-MO-EpY"/>
+                        <outlet property="doneButton" destination="utU-pE-97V" id="3DA-dM-rKs"/>
                         <outlet property="lineChartView" destination="aeR-hk-d87" id="egL-OO-dLi"/>
                         <outlet property="monthLabel" destination="Gsu-yL-kmi" id="OEq-Mi-ocQ"/>
+                        <outlet property="picker" destination="14I-nY-2wH" id="iCT-tw-pfH"/>
                         <outlet property="yearLabel" destination="L3x-eF-E8B" id="cxp-Ia-b02"/>
                     </connections>
                 </viewController>
@@ -438,8 +454,6 @@
     </scenes>
     <resources>
         <image name="arrowtriangle.down.fill" catalog="system" width="64" height="62"/>
-        <image name="arrowtriangle.left.fill" catalog="system" width="64" height="56"/>
-        <image name="arrowtriangle.right.fill" catalog="system" width="64" height="56"/>
     </resources>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
 </document>
