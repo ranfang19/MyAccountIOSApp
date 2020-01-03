@@ -208,20 +208,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qmn-2y-YDQ">
-                                <rect key="frame" x="269" y="146" width="16" height="11"/>
+                                <rect key="frame" x="269" y="145" width="16" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="arrowtriangle.down.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="pickerButton:" destination="nk8-De-06C" eventType="touchUpInside" id="sZd-Jr-Zag"/>
                                     <action selector="triangleButton:" destination="nk8-De-06C" eventType="touchUpInside" id="RDy-Dc-Snq"/>
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14I-nY-2wH">
-                                <rect key="frame" x="0.0" y="651" width="414" height="162"/>
+                                <rect key="frame" x="61" y="641" width="293" height="170"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaC-3w-dPc">
-                                <rect key="frame" x="31" y="613" width="48" height="30"/>
+                                <rect key="frame" x="61" y="613" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
@@ -229,7 +228,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utU-pE-97V">
-                                <rect key="frame" x="344" y="613" width="37" height="30"/>
+                                <rect key="frame" x="318" y="613" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Done"/>
                                 <connections>

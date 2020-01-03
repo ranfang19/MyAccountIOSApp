@@ -25,8 +25,6 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         }
     }
     
-    @IBAction func pickerButton(_ sender: UIButton) {
-    }
     
     
     @IBOutlet weak var yearLabel: UILabel!
@@ -122,7 +120,7 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         do {
             let result = try context.fetch(request)
             for data in result as! [NSManagedObject] {
-                if data.value(forKey: "amount") != nil {
+                if data.value(forKey: "amount") != nil && data.value(forKey: "year")as!Int == 2019 && data.value(forKey: "month")as!Int == 12 {
                 //print(data.value(forKey: "amount")as! Double)
                 numbers.append(data.value(forKey: "amount") as! Double)
                 }

@@ -31,39 +31,74 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     
     var yearData:String = "2019"
     var monthData:String = "Dec"
+    var monthInt:Int=12
     
     var incomeTotal:Double = 0
     var expenseTotal:Double = 0
     
-    var lines = [Line](){
-        didSet {
-            updateView()
-        }
-    }
+//    var lines = [Line](){
+//        didSet {
+//            updateView()
+//        }
+//    }
     
-    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Line> = {
-        // Create Fetch Request
-        let fetchRequest: NSFetchRequest<Line> = Line.fetchRequest()
-
-        // Configure Fetch Request
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "year", ascending: false),NSSortDescriptor(key: "month", ascending: false),NSSortDescriptor(key: "day", ascending: false),NSSortDescriptor(key: "id", ascending: true)]
-
-        // Create Fetched Results Controller
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-
-        // Configure Fetched Results Controller
-        fetchedResultsController.delegate = self
-
-        return fetchedResultsController
-    }()
+    var lines: [Any] = []
+    
+//    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Line> = {
+//        // Create Fetch Request
+//        let fetchRequest: NSFetchRequest<Line> = Line.fetchRequest()
+//
+//        // Configure Fetch Request
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "year", ascending: false),NSSortDescriptor(key: "month", ascending: false),NSSortDescriptor(key: "day", ascending: false),NSSortDescriptor(key: "id", ascending: true)]
+//
+//        let predicateMonth = NSPredicate(format:"month == %d",monthInt)
+//        let predicateYear = NSPredicate(format:"year == %d",Int(yearData) ?? 2020)
+//        let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateMonth, predicateYear])
+//        fetchRequest.predicate = andPredicate
+//
+//
+//        // Create Fetched Results Controller
+//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+//
+//        // Configure Fetched Results Controller
+//        fetchedResultsController.delegate = self
+//
+//        return fetchedResultsController
+//    }()
     
     
     private func updateView() {
         var hasLines = false
+        
+        expenseTotal=0
+        incomeTotal=0
+        expenseLabel.text = "0.0"
+        incomeLabel.text = "0.0"
 
-        if let lines = fetchedResultsController.fetchedObjects {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+               
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
+        
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "year", ascending: false),NSSortDescriptor(key: "month", ascending: false),NSSortDescriptor(key: "day", ascending: false),NSSortDescriptor(key: "id", ascending: true)]
+
+        let predicateMonth = NSPredicate(format:"month == %d", monthInt)
+        let predicateYear = NSPredicate(format:"year == %d", Int(yearData) ?? 2019)
+        let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateMonth, predicateYear])
+        fetchRequest.predicate = andPredicate
+               
+        do {
+            lines = try context.fetch(fetchRequest)
             hasLines = lines.count > 0
+        } catch {
+            print("Failed")
         }
+        
+//        if let lines = fetchedResultsController.fetchedObjects {
+//            hasLines = lines.count > 0
+//        }
 
         tableView?.isHidden = !hasLines
         acticityIndicatorView?.stopAnimating()
@@ -80,8 +115,8 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        yearLabel.text = "2019"
-        monthLabel.text = "Dec"
+        yearLabel.text = yearData
+        monthLabel.text = monthData
 
         pickerViewHiddenStatus(pvStatus: true)
         
@@ -93,13 +128,13 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             } else {
                 self.setupView()
                 
-                do {
-                    try self.fetchedResultsController.performFetch()
-                } catch {
-                    let fetchError = error as NSError
-                    print("Unable to Perform Fetch Request")
-                    print("\(fetchError), \(fetchError.localizedDescription)")
-                }
+//                do {
+//                    try self.fetchedResultsController.performFetch()
+//                } catch {
+//                    let fetchError = error as NSError
+//                    print("Unable to Perform Fetch Request")
+//                    print("\(fetchError), \(fetchError.localizedDescription)")
+//                }
                 
                 self.updateView()            }
         }
@@ -138,6 +173,9 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         pickerViewHiddenStatus(pvStatus: true)
         yearLabel.text = yearData
         monthLabel.text = monthData
+        monthInt=monthConvert(data: monthData)
+        updateView()
+        self.tableView.reloadData()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -166,6 +204,39 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         monthData = monthArray[row]
     }
     
+    func monthConvert(data:String)->Int{
+        var monthIntData:Int=1
+        switch data {
+        case "Jan" :
+            monthIntData=1
+        case "Feb":
+            monthIntData=2
+        case "Mar":
+            monthIntData=3
+        case "Apr":
+            monthIntData=4
+        case "May":
+            monthIntData=5
+        case "June":
+            monthIntData=6
+        case "July":
+            monthIntData=7
+        case "Aug":
+            monthIntData=8
+        case "Sept":
+            monthIntData=9
+        case "Oct":
+            monthIntData=10
+        case "Nov":
+            monthIntData=11
+        case "Dec":
+            monthIntData=12
+        default:
+            monthIntData=1
+        }
+        return monthIntData
+    }
+    
 
     
     override func didReceiveMemoryWarning() {
@@ -175,7 +246,8 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         do {
-            try self.fetchedResultsController.performFetch()
+            //try self.fetchedResultsController.performFetch()
+            updateView()
         } catch {
             let fetchError = error as NSError
             print("Unable to Perform Fetch Request")
@@ -188,30 +260,29 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
 
 extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let lines = fetchedResultsController.fetchedObjects else { return 0 }
+        //guard let lines = fetchedResultsController.fetchedObjects else { return 0 }
         return lines.count
     }
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: LineTableViewCell.reuseIdentifier, for: indexPath) as? LineTableViewCell else {
             fatalError("Unexpected Index Path")
         }
 
         
-        // Fetch Modules
-        let line = fetchedResultsController.object(at: indexPath)
+        let line = lines[indexPath.row] as! NSManagedObject
 
         // Configure Cell
-        cell.dateLabel.text = "\(String(line.year)) / \(String(line.month)) / \(String(line.day))"
-        cell.titleLabel.text = line.title
-        
-        if (line.expense==true) {
-            cell.amountLabel.text = "-\(String(line.amount))"
-            expenseTotal = expenseTotal + line.amount
+        cell.dateLabel.text = "\(String(line.value(forKey: "year") as! Int16)) / \(String(line.value(forKey: "month") as! Int16)) / \(String(line.value(forKey: "day") as! Int16))"
+        cell.titleLabel.text = line.value(forKey: "title") as? String
+
+        if (line.value(forKey: "expense") as? Bool == true) {
+            cell.amountLabel.text = "-\(String(line.value(forKey: "amount") as? Double ?? 0))"
+            expenseTotal = expenseTotal + (line.value(forKey: "amount") as? Double ?? 0)
         }
-        else if(line.expense==false){
-            cell.amountLabel.text = String(line.amount)
-            incomeTotal = incomeTotal + line.amount
+        else if(line.value(forKey: "expense") as? Bool == false){
+            cell.amountLabel.text = String(line.value(forKey: "amount") as? Double ?? 0 )
+            incomeTotal = incomeTotal + (line.value(forKey: "amount") as? Double ?? 0)
         }
         expenseLabel.text = String(expenseTotal)
         incomeLabel.text = String(incomeTotal)
