@@ -142,8 +142,9 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         pieChartView.rotationAngle = 0
         pieChartView.rotationEnabled = false
         pieChartView.isUserInteractionEnabled = false
+        pieChartView.legend.font = UIFont.systemFont(ofSize: 15)
         
-        //pieChartView.legend.enabled = false
+        //pieChartView.legend.enabled = falses
         
         var entries:[PieChartDataEntry] = Array()
         if (transportData != 0){
@@ -160,6 +161,7 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         }
         
         let dataSet = PieChartDataSet(entries: entries, label:"")
+        dataSet.valueTextColor=UIColor.black
         
         let c1=NSUIColor(hex: 0xfeae65)
         let c2=NSUIColor(hex: 0xf66d44)
