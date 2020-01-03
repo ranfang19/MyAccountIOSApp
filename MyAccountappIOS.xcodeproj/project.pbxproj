@@ -17,6 +17,7 @@
 		3CBC1BDF23A6C13600ED625D /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBC1BDB23A6C12900ED625D /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CCB7D74239F893B007EE4BE /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB7D73239F893B007EE4BE /* NewViewController.swift */; };
 		3CCB7D76239F8946007EE4BE /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB7D75239F8946007EE4BE /* ChartViewController.swift */; };
+		3CCCDC8423BFE19400A6E727 /* NSUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCDC8323BFE19400A6E727 /* NSUIColor.swift */; };
 		3CCE4EB423A0FB9A0015F5A9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CCE4EB323A0FB9A0015F5A9 /* Launch Screen.storyboard */; };
 		3CE87C92239F97AD00162BF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE87C91239F97AD00162BF4 /* ViewController.swift */; };
 		3CE87C94239F9F3700162BF4 /* LineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		3CBC1BD523A6C12800ED625D /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		3CCB7D73239F893B007EE4BE /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		3CCB7D75239F8946007EE4BE /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		3CCCDC8323BFE19400A6E727 /* NSUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUIColor.swift; sourceTree = "<group>"; };
 		3CCE4EB323A0FB9A0015F5A9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3CE87C91239F97AD00162BF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				3CCB7D73239F893B007EE4BE /* NewViewController.swift */,
 				3CCB7D75239F8946007EE4BE /* ChartViewController.swift */,
 				3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */,
+				3CCCDC8323BFE19400A6E727 /* NSUIColor.swift */,
 			);
 			path = MyAccountappIOS;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			files = (
 				3CE87C94239F9F3700162BF4 /* LineTableViewCell.swift in Sources */,
 				3C7444AC2399489700EEAC81 /* DetailsViewController.swift in Sources */,
+				3CCCDC8423BFE19400A6E727 /* NSUIColor.swift in Sources */,
 				3C7444A82399489700EEAC81 /* AppDelegate.swift in Sources */,
 				3CCB7D74239F893B007EE4BE /* NewViewController.swift in Sources */,
 				3CFA1C90239EFE4900461AAD /* MainTabController.swift in Sources */,

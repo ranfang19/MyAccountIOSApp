@@ -15,16 +15,8 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
 
     
     
-    var isExpense:Bool = false
-    @IBAction func incomeExpense(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            isExpense = false
-        }
-        else {
-            isExpense = true
-        }
-    }
-    
+    var isExpense:Bool = true
+
     
     
     @IBOutlet weak var yearLabel: UILabel!
@@ -38,6 +30,19 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     
     var yearData:String = "2019"
     var monthData:String = "Dec"
+    var monthInt:Int=12
+    
+    var transportArray: [Double] = []
+    var foodArray: [Double] = []
+    var shoppingArray: [Double] = []
+    var housingArray: [Double] = []
+    
+    var transportTotal:Double=0
+    var foodTotal:Double=0
+    var shoppingTotal:Double=0
+    var housingTotal:Double=0
+    
+    var lines: [Any] = []
     
     @IBAction func triangleButton(_ sender: UIButton) {
         self.picker?.dataSource = self
@@ -57,6 +62,8 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         pickerViewHiddenStatus(pvStatus: true)
         yearLabel.text = yearData
         monthLabel.text = monthData
+        monthInt=monthConvert(data: monthData)
+        updateChart()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -91,72 +98,167 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         doneButton.isHidden = pvStatus
     }
     
+    func monthConvert(data:String)->Int{
+        var monthIntData:Int=1
+        switch data {
+        case "Jan" :
+            monthIntData=1
+        case "Feb":
+            monthIntData=2
+        case "Mar":
+            monthIntData=3
+        case "Apr":
+            monthIntData=4
+        case "May":
+            monthIntData=5
+        case "June":
+            monthIntData=6
+        case "July":
+            monthIntData=7
+        case "Aug":
+            monthIntData=8
+        case "Sept":
+            monthIntData=9
+        case "Oct":
+            monthIntData=10
+        case "Nov":
+            monthIntData=11
+        case "Dec":
+            monthIntData=12
+        default:
+            monthIntData=1
+        }
+        return monthIntData
+    }
     
     
     
-    @IBOutlet weak var lineChartView: LineChartView!
+    
+    @IBOutlet weak var pieChartView: PieChartView!
+    
+    func setupPieChart(transportData:Double,foodData:Double,shoppingData:Double,housingData:Double){
+        pieChartView.chartDescription?.enabled = false
+        pieChartView.drawHoleEnabled = false
+        pieChartView.rotationAngle = 0
+        pieChartView.rotationEnabled = false
+        pieChartView.isUserInteractionEnabled = false
+        
+        //pieChartView.legend.enabled = false
+        
+        var entries:[PieChartDataEntry] = Array()
+        if (transportData != 0){
+            entries.append(PieChartDataEntry(value: transportData, label: "Transport:\(String(transportData))"))
+        }
+        if (shoppingData != 0){
+            entries.append(PieChartDataEntry(value: foodData, label: "Shopping:\(String(shoppingData))"))
+        }
+        if (foodData != 0){
+            entries.append(PieChartDataEntry(value: shoppingData, label: "Food:\(String(foodData))"))
+        }
+        if (housingData != 0){
+        entries.append(PieChartDataEntry(value: housingData, label: "Housing:\(String(housingData))"))
+        }
+        
+        let dataSet = PieChartDataSet(entries: entries, label:"")
+        
+        let c1=NSUIColor(hex: 0xfeae65)
+        let c2=NSUIColor(hex: 0xf66d44)
+        let c3=NSUIColor(hex: 0x65c2a6)
+        let c4=NSUIColor(hex: 0x2d87bb)
+        
+        dataSet.colors = [c1,c2,c3,c4]
+        dataSet.drawValuesEnabled = false
+        
+        pieChartView.data=PieChartData(dataSet:dataSet)
+        
+        
+        
+    }
     
     
-    var numbers = [Double]()
     
     required init?(coder aDecoder:NSCoder){
         super.init(coder:aDecoder)
         tabBarItem = UITabBarItem(title:"Chart", image:UIImage(named:"chart"),tag:3)
     }
     
+    func updateChart(){
+        transportArray = []
+        foodArray = []
+        shoppingArray = []
+        housingArray = []
+        transportTotal=0
+        foodTotal=0
+        shoppingTotal=0
+        housingTotal=0
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+               
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
+        
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        let predicateMonth = NSPredicate(format:"month == %d", monthInt)
+        let predicateYear = NSPredicate(format:"year == %d", Int(yearData) ?? 2019)
+        let predicateExpense = NSPredicate(format:"expense == %d", isExpense)
+        let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateMonth, predicateYear,predicateExpense])
+        fetchRequest.predicate = andPredicate
+        
+        do {
+            lines = try context.fetch(fetchRequest)
+            for line in lines as! [NSManagedObject] {
+                if (line.value(forKey:"category") as! String == "Transport"){
+                    transportArray.append(line.value(forKey:"amount") as! Double)
+                    transportTotal = transportTotal + (line.value(forKey:"amount") as? Double ?? 0)
+                }
+                else if (line.value(forKey:"category") as! String == "Food"){
+                    foodArray.append(line.value(forKey:"amount") as! Double)
+                    foodTotal = foodTotal + (line.value(forKey:"amount") as? Double ?? 0)
+                }
+                else if (line.value(forKey:"category") as! String == "Shopping"){
+                    shoppingArray.append(line.value(forKey:"amount") as! Double)
+                    shoppingTotal = shoppingTotal + (line.value(forKey:"amount") as? Double ?? 0)
+                }
+                else if (line.value(forKey:"category") as! String == "Housing"){
+                    housingArray.append(line.value(forKey:"amount") as! Double)
+                    housingTotal = housingTotal + (line.value(forKey:"amount") as? Double ?? 0)
+                }
+            }
+            setupPieChart(transportData: transportTotal, foodData: foodTotal, shoppingData: shoppingTotal, housingData: housingTotal)
+        } catch {
+            print("Failed")
+        }
+    }
+    
+    private let persistentContainer = NSPersistentContainer(name: "MyAccountappIOS")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        yearLabel.text = "2019"
-        monthLabel.text = "Dec"
+        yearLabel.text = yearData
+        monthLabel.text = monthData
         
         pickerViewHiddenStatus(pvStatus: true)
 
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
-
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                if data.value(forKey: "amount") != nil && data.value(forKey: "year")as!Int == 2019 && data.value(forKey: "month")as!Int == 12 {
-                //print(data.value(forKey: "amount")as! Double)
-                numbers.append(data.value(forKey: "amount") as! Double)
+        persistentContainer.loadPersistentStores { (persistentStoreDescription, error) in
+            if let error = error {
+                print("Unable to Load Persistent Store")
+                print("\(error), \(error.localizedDescription)")
+                        
+            } else {
+                self.updateChart()
+            }
                 }
-          }
-            
-        } catch {
-            
-            print("Failed")
-        }
-        
-        
-        setChartValues()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    
-    
-    func setChartValues(_ count : Int = 20) {
-        var lineChartEntry = [ChartDataEntry]()
-        for i in 0..<numbers.count{
-            let value = ChartDataEntry(x:Double(i),y: Double(numbers[i]))
-            lineChartEntry.append(value)
-        }
-        
-        let line1 = LineChartDataSet(entries:lineChartEntry, label:"Number")
-        
-        let data = LineChartData()
-        data.addDataSet(line1)
-        
-        lineChartView.data = data
-        lineChartView.chartDescription?.text="My af"
-    }
 
 
 }
+
+extension ChartViewController: NSFetchedResultsControllerDelegate {}
 

@@ -30,8 +30,8 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     var monthArray:[String] = [String]()
     
     var yearData:String = "2019"
-    var monthData:String = "Dec"
-    var monthInt:Int=12
+    var monthData:String = "Nov"
+    var monthInt:Int=11
     
     var incomeTotal:Double = 0
     var expenseTotal:Double = 0

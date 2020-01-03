@@ -177,22 +177,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeR-hk-d87" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="196" width="374" height="182"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4Y3-gH-OXI">
-                                <rect key="frame" x="136" y="78" width="143" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Income"/>
-                                    <segment title="Expense"/>
-                                </segments>
-                                <connections>
-                                    <action selector="incomeExpense:" destination="nk8-De-06C" eventType="valueChanged" id="Ipd-QB-9AC"/>
-                                </connections>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3x-eF-E8B">
                                 <rect key="frame" x="157" y="139" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -235,6 +219,11 @@
                                     <action selector="doneButton:" destination="nk8-De-06C" eventType="touchUpInside" id="lUg-jP-9Ua"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeR-hk-d87" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="56" y="214" width="302" height="299"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.85098039215686272" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="1dG-XP-Okk"/>
@@ -243,9 +232,9 @@
                     <connections>
                         <outlet property="cancelButton" destination="IaC-3w-dPc" id="NDn-MO-EpY"/>
                         <outlet property="doneButton" destination="utU-pE-97V" id="3DA-dM-rKs"/>
-                        <outlet property="lineChartView" destination="aeR-hk-d87" id="egL-OO-dLi"/>
                         <outlet property="monthLabel" destination="Gsu-yL-kmi" id="OEq-Mi-ocQ"/>
                         <outlet property="picker" destination="14I-nY-2wH" id="iCT-tw-pfH"/>
+                        <outlet property="pieChartView" destination="aeR-hk-d87" id="liX-Oa-KML"/>
                         <outlet property="yearLabel" destination="L3x-eF-E8B" id="cxp-Ia-b02"/>
                     </connections>
                 </viewController>
