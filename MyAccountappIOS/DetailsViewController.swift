@@ -43,6 +43,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
 //    }
     
     var lines: [Any] = []
+    var datas: [Any] = []
     
 //    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Line> = {
 //        // Create Fetch Request
@@ -115,6 +116,9 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initData()
+        
+        
         yearLabel.text = yearData
         monthLabel.text = monthData
 
@@ -144,6 +148,55 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     private func setupView() {
         updateView()
     }
+    
+    func initData(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
+        
+        do {
+            datas = try context.fetch(fetchRequest)
+            if datas.count>0 {
+                for data in datas as! [NSManagedObject] {
+                    context.delete(data)
+                }
+            }
+        } catch {
+
+        }
+        
+        var keys:[String] = ["id", "title", "category", "year", "month", "day","expense","amount"]
+        let rawData = [
+            [1,"TCAT","Transport",2019,11,2,true,21],
+            [2,"Little Korea","Food",2019,11,12,true,32.8],
+            [3,"H&M","Shopping",2019,11,22,true,19.9],
+            [4,"Crous","Housing",2019,11,31,true,198],
+            [5,"TCAT","Transport",2019,12,2,true,21],
+            [6,"Dior","Shopping",2019,12,19,true,45.9],
+            [7,"Restaurant","Food",2019,12,20,true,20.4],
+            [8,"Crous","Housing",2019,12,31,true,198],
+            [9,"TCAT","Transport",2020,1,2,true,21],
+            [10,"Lit","Shopping",2020,1,2,true,125.6],
+            [11,"Carrefour-Food","Food",2020,1,3,true,31.6],
+            [12,"Coca","Food",2020,1,3,true,0.9],
+            [13,"Crous","Housing",2020,1,31,true,198],
+        ]
+
+        for data in rawData {
+            let newData = NSEntityDescription.insertNewObject(forEntityName: "Line", into: context)
+            for i in 0..<8 {
+                newData.setValue(data[i], forKey: keys[i])
+            }
+            do {
+                try context.save()
+                //print("data", data[0], data[1], " saved")
+            } catch  {
+                //print("data", data[0], data[1], " save err")
+            }
+        }
+    }
+    
     
         
     
@@ -269,7 +322,6 @@ extension DetailsViewController: UITableViewDataSource {
             fatalError("Unexpected Index Path")
         }
 
-        
         let line = lines[indexPath.row] as! NSManagedObject
 
         // Configure Cell
@@ -287,6 +339,39 @@ extension DetailsViewController: UITableViewDataSource {
         expenseLabel.text = String(expenseTotal)
         incomeLabel.text = String(incomeTotal)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
+            let lineToDelete = lines[indexPath.row] as! NSManagedObject
+
+            lines.remove(at: indexPath.row)
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+
+            do {
+                datas = try context.fetch(fetchRequest)
+                context.delete(lineToDelete)
+                do {
+                    try context.save()
+                } catch  {
+                    print("dlete error")
+                }
+            } catch {
+
+            }
+            
+        }
     }
 }
 
