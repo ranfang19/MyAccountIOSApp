@@ -28,9 +28,9 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     var yearArray:[String] = [String]()
     var monthArray:[String] = [String]()
     
-    var yearData:String = "2019"
-    var monthData:String = "Dec"
-    var monthInt:Int=12
+    var yearData:String = "2020"
+    var monthData:String = "Jan"
+    var monthInt:Int=1
     
     var transportArray: [Double] = []
     var foodArray: [Double] = []

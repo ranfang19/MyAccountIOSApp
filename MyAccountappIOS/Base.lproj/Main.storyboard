@@ -382,7 +382,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vz8-2Q-a1d">
-                                <rect key="frame" x="322" y="467" width="17" height="13"/>
+                                <rect key="frame" x="322" y="469" width="17" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="7"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -428,6 +428,7 @@
                         <outlet property="cancelCategoryPickerBtn" destination="UoH-5Q-Iw5" id="iGJ-7P-FQa"/>
                         <outlet property="cancelDatePickerBtn" destination="XZM-EE-BlX" id="GwY-2H-XkH"/>
                         <outlet property="categoryPicker" destination="6q8-AW-oL9" id="ygb-x4-Kpt"/>
+                        <outlet property="categoryPickerBtn" destination="vz8-2Q-a1d" id="15a-zx-ZFO"/>
                         <outlet property="categoryTextField" destination="Fcf-eK-xew" id="baR-3G-qLd"/>
                         <outlet property="datePicker" destination="5EM-Ir-Lad" id="ENt-kX-YaW"/>
                         <outlet property="dateTextField" destination="Yuu-Pf-oMA" id="v3P-Zj-8WM"/>

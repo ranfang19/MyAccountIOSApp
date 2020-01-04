@@ -25,9 +25,11 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
     @IBAction func incomeExpense(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             isExpense = false
+            categoryPickerBtn.isHidden = true
         }
         else {
             isExpense = true
+            categoryPickerBtn.isHidden = false
         }
     }
     
@@ -129,6 +131,7 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         categorySelected = categoryPickerValue
     }
     
+
     @IBAction func cancelCategoryPickerBtn(_ sender: Any) {
         categoryPickerIsHidden(status:true)
     }
@@ -138,6 +141,7 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         categoryTextField.text=categorySelected
     }
     
+    @IBOutlet weak var categoryPickerBtn: UIButton!
     @IBAction func categoryPickerBtn(_ sender: Any) {
         categoryPickerIsHidden(status:false)
     }
@@ -154,6 +158,7 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         
         datePickerIsHidden(status:true)
         categoryPickerIsHidden(status:true)
+        categoryPickerBtn.isHidden = true
         
         let date : Date = Date()
         let dateFormatter = DateFormatter()
