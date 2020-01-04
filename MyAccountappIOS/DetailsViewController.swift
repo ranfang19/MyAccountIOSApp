@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
 
@@ -36,38 +37,9 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     var incomeTotal:Double = 0
     var expenseTotal:Double = 0
     
-//    var lines = [Line](){
-//        didSet {
-//            updateView()
-//        }
-//    }
-    
     var lines: [Any] = []
     var datas: [Any] = []
-    
-//    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Line> = {
-//        // Create Fetch Request
-//        let fetchRequest: NSFetchRequest<Line> = Line.fetchRequest()
-//
-//        // Configure Fetch Request
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "year", ascending: false),NSSortDescriptor(key: "month", ascending: false),NSSortDescriptor(key: "day", ascending: false),NSSortDescriptor(key: "id", ascending: true)]
-//
-//        let predicateMonth = NSPredicate(format:"month == %d",monthInt)
-//        let predicateYear = NSPredicate(format:"year == %d",Int(yearData) ?? 2020)
-//        let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateMonth, predicateYear])
-//        fetchRequest.predicate = andPredicate
-//
-//
-//        // Create Fetched Results Controller
-//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-//
-//        // Configure Fetched Results Controller
-//        fetchedResultsController.delegate = self
-//
-//        return fetchedResultsController
-//    }()
-    
-    
+
     private func updateView() {
         var hasLines = false
         
@@ -78,13 +50,9 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-               
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
-        
         fetchRequest.returnsObjectsAsFaults = false
-        
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "year", ascending: false),NSSortDescriptor(key: "month", ascending: false),NSSortDescriptor(key: "day", ascending: false),NSSortDescriptor(key: "id", ascending: true)]
-
         let predicateMonth = NSPredicate(format:"month == %d", monthInt)
         let predicateYear = NSPredicate(format:"year == %d", Int(yearData) ?? 2019)
         let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateMonth, predicateYear])
@@ -97,10 +65,6 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             print("Failed")
         }
         
-//        if let lines = fetchedResultsController.fetchedObjects {
-//            hasLines = lines.count > 0
-//        }
-
         tableView?.isHidden = !hasLines
         acticityIndicatorView?.stopAnimating()
     }
@@ -116,8 +80,8 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNotification()
         initData()
-        
         
         yearLabel.text = yearData
         monthLabel.text = monthData
@@ -128,25 +92,34 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             if let error = error {
                 print("Unable to Load Persistent Store")
                 print("\(error), \(error.localizedDescription)")
-                
-            } else {
+                }
+            else {
                 self.setupView()
-                
-//                do {
-//                    try self.fetchedResultsController.performFetch()
-//                } catch {
-//                    let fetchError = error as NSError
-//                    print("Unable to Perform Fetch Request")
-//                    print("\(fetchError), \(fetchError.localizedDescription)")
-//                }
-                
-                self.updateView()            }
+                self.updateView()
+            }
         }
         
     }
     
     private func setupView() {
         updateView()
+    }
+    
+    func setNotification(){
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]){
+            (granted, error) in
+        }
+        let content = UNMutableNotificationContent()
+        content.title = "Hey"
+        content.body = "Would like to check your bill report of this month?"
+        let components = DateComponents(day:4,hour:23,minute:21,second:0)
+        let trigger = UNCalendarNotificationTrigger(dateMatching:components, repeats: true)
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier:uuidString,content:content,trigger:trigger)
+        center.add(request) {
+            (error) in
+        }
     }
     
     func initData(){
@@ -197,8 +170,6 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         }
     }
     
-    
-        
     
     func pickerViewHiddenStatus(pvStatus:Bool) {
         yearMonthPicker.isHidden = pvStatus
