@@ -19,6 +19,9 @@
 		3CCB7D76239F8946007EE4BE /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB7D75239F8946007EE4BE /* ChartViewController.swift */; };
 		3CCCDC8423BFE19400A6E727 /* NSUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCDC8323BFE19400A6E727 /* NSUIColor.swift */; };
 		3CCE4EB423A0FB9A0015F5A9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CCE4EB323A0FB9A0015F5A9 /* Launch Screen.storyboard */; };
+		3CD7EA3F23C24D7C009F8AE9 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD7EA3E23C24D7C009F8AE9 /* ExportViewController.swift */; };
+		3CD7EA4423C25454009F8AE9 /* LineTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD7EA4323C25454009F8AE9 /* LineTableViewCell2.swift */; };
+		3CD7EA4823C25734009F8AE9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD7EA4723C25734009F8AE9 /* SettingViewController.swift */; };
 		3CE87C92239F97AD00162BF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE87C91239F97AD00162BF4 /* ViewController.swift */; };
 		3CE87C94239F9F3700162BF4 /* LineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */; };
 		3CFA1C90239EFE4900461AAD /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA1C8F239EFE4900461AAD /* MainTabController.swift */; };
@@ -69,6 +72,9 @@
 		3CCB7D75239F8946007EE4BE /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		3CCCDC8323BFE19400A6E727 /* NSUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUIColor.swift; sourceTree = "<group>"; };
 		3CCE4EB323A0FB9A0015F5A9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		3CD7EA3E23C24D7C009F8AE9 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
+		3CD7EA4323C25454009F8AE9 /* LineTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTableViewCell2.swift; sourceTree = "<group>"; };
+		3CD7EA4723C25734009F8AE9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3CE87C91239F97AD00162BF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTableViewCell.swift; sourceTree = "<group>"; };
 		3CFA1C8F239EFE4900461AAD /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
@@ -128,6 +134,9 @@
 				3CCB7D75239F8946007EE4BE /* ChartViewController.swift */,
 				3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */,
 				3CCCDC8323BFE19400A6E727 /* NSUIColor.swift */,
+				3CD7EA3E23C24D7C009F8AE9 /* ExportViewController.swift */,
+				3CD7EA4323C25454009F8AE9 /* LineTableViewCell2.swift */,
+				3CD7EA4723C25734009F8AE9 /* SettingViewController.swift */,
 			);
 			path = MyAccountappIOS;
 			sourceTree = "<group>";
@@ -239,10 +248,13 @@
 				3CE87C94239F9F3700162BF4 /* LineTableViewCell.swift in Sources */,
 				3C7444AC2399489700EEAC81 /* DetailsViewController.swift in Sources */,
 				3CCCDC8423BFE19400A6E727 /* NSUIColor.swift in Sources */,
+				3CD7EA4823C25734009F8AE9 /* SettingViewController.swift in Sources */,
+				3CD7EA3F23C24D7C009F8AE9 /* ExportViewController.swift in Sources */,
 				3C7444A82399489700EEAC81 /* AppDelegate.swift in Sources */,
 				3CCB7D74239F893B007EE4BE /* NewViewController.swift in Sources */,
 				3CFA1C90239EFE4900461AAD /* MainTabController.swift in Sources */,
 				3C7444AA2399489700EEAC81 /* SceneDelegate.swift in Sources */,
+				3CD7EA4423C25454009F8AE9 /* LineTableViewCell2.swift in Sources */,
 				3CCB7D76239F8946007EE4BE /* ChartViewController.swift in Sources */,
 				3CE87C92239F97AD00162BF4 /* ViewController.swift in Sources */,
 				3C7444B22399489700EEAC81 /* MyAccountappIOS.xcdatamodeld in Sources */,

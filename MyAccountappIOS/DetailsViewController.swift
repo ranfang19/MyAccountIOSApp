@@ -338,7 +338,7 @@ extension DetailsViewController: UITableViewDataSource {
                 do {
                     try context.save()
                 } catch  {
-                    print("dlete error")
+                    print("delete error")
                 }
             } catch {
 
