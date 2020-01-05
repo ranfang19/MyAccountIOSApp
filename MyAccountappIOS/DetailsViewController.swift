@@ -112,7 +112,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         let content = UNMutableNotificationContent()
         content.title = "Hey"
         content.body = "Would like to check your bill report of this month?"
-        let components = DateComponents(day:4,hour:23,minute:39,second:1)
+        let components = DateComponents(day:5,hour:20,minute:29,second:59)
         let trigger = UNCalendarNotificationTrigger(dateMatching:components, repeats: true)
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier:uuidString,content:content,trigger:trigger)
