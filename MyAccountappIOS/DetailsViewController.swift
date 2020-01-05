@@ -57,14 +57,13 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         let predicateYear = NSPredicate(format:"year == %d", Int(yearData) ?? 2019)
         let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateMonth, predicateYear])
         fetchRequest.predicate = andPredicate
-               
+        
         do {
             lines = try context.fetch(fetchRequest)
             hasLines = lines.count > 0
         } catch {
             print("Failed")
         }
-        
         tableView?.isHidden = !hasLines
         acticityIndicatorView?.stopAnimating()
     }
@@ -113,7 +112,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         let content = UNMutableNotificationContent()
         content.title = "Hey"
         content.body = "Would like to check your bill report of this month?"
-        let components = DateComponents(day:4,hour:23,minute:21,second:0)
+        let components = DateComponents(day:4,hour:23,minute:39,second:1)
         let trigger = UNCalendarNotificationTrigger(dateMatching:components, repeats: true)
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier:uuidString,content:content,trigger:trigger)
@@ -153,7 +152,8 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             [10,"Lit","Shopping",2020,1,2,true,125.6],
             [11,"Carrefour-Food","Food",2020,1,3,true,31.6],
             [12,"Coca","Food",2020,1,3,true,0.9],
-            [13,"Crous","Housing",2020,1,31,true,198],
+            [13,"Return of H&M","",2020,1,4,false,29],
+            [14,"Crous","Housing",2020,1,31,true,198],
         ]
 
         for data in rawData {
@@ -300,10 +300,12 @@ extension DetailsViewController: UITableViewDataSource {
         cell.titleLabel.text = line.value(forKey: "title") as? String
 
         if (line.value(forKey: "expense") as? Bool == true) {
+            cell.imageLabel.image = UIImage(named:"\(line.value(forKey: "category") as! String)")
             cell.amountLabel.text = "-\(String(line.value(forKey: "amount") as? Double ?? 0))"
             expenseTotal = expenseTotal + (line.value(forKey: "amount") as? Double ?? 0)
         }
         else if(line.value(forKey: "expense") as? Bool == false){
+            cell.imageLabel.image = UIImage(named:"income")
             cell.amountLabel.text = String(line.value(forKey: "amount") as? Double ?? 0 )
             incomeTotal = incomeTotal + (line.value(forKey: "amount") as? Double ?? 0)
         }

@@ -15,6 +15,7 @@ class LineTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var imageLabel: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
