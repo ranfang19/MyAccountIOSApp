@@ -19,12 +19,8 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     @IBOutlet weak var yearMonthPicker: UIPickerView!
     @IBOutlet weak var cancelPickerButton: UIButton!
     @IBOutlet weak var donePickerButton: UIButton!
-    
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var acticityIndicatorView: UIActivityIndicatorView!
-    
-    
     
     
     var yearArray:[String] = [String]()
@@ -70,7 +66,6 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     
     private let persistentContainer = NSPersistentContainer(name: "MyAccountappIOS")
     
-
     required init?(coder aDecoder:NSCoder){
         super.init(coder:aDecoder)
         tabBarItem = UITabBarItem(title:"Details", image:UIImage(named:"book"),tag:1)
@@ -112,7 +107,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         let content = UNMutableNotificationContent()
         content.title = "Hey"
         content.body = "Would like to check your bill report of this month?"
-        let components = DateComponents(day:5,hour:20,minute:29,second:59)
+        let components = DateComponents(day:28,hour:20,minute:0,second:0)
         let trigger = UNCalendarNotificationTrigger(dateMatching:components, repeats: true)
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier:uuidString,content:content,trigger:trigger)
@@ -124,7 +119,6 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     func initData(){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
         
         do {
@@ -163,9 +157,7 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             }
             do {
                 try context.save()
-                //print("data", data[0], data[1], " saved")
             } catch  {
-                //print("data", data[0], data[1], " save err")
             }
         }
     }
@@ -270,7 +262,6 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         do {
-            //try self.fetchedResultsController.performFetch()
             updateView()
         } catch {
             let fetchError = error as NSError
@@ -284,7 +275,6 @@ class DetailsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
 
 extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //guard let lines = fetchedResultsController.fetchedObjects else { return 0 }
         return lines.count
     }
         
@@ -295,7 +285,6 @@ extension DetailsViewController: UITableViewDataSource {
 
         let line = lines[indexPath.row] as! NSManagedObject
 
-        // Configure Cell
         cell.dateLabel.text = "\(String(line.value(forKey: "year") as! Int16)) / \(String(line.value(forKey: "month") as! Int16)) / \(String(line.value(forKey: "day") as! Int16))"
         cell.titleLabel.text = line.value(forKey: "title") as? String
 
@@ -321,7 +310,6 @@ extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
@@ -331,7 +319,6 @@ extension DetailsViewController: UITableViewDataSource {
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
-
             do {
                 datas = try context.fetch(fetchRequest)
                 context.delete(lineToDelete)

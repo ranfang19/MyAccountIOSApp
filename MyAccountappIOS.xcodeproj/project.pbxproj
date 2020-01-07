@@ -130,13 +130,13 @@
 				3CE87C91239F97AD00162BF4 /* ViewController.swift */,
 				3CFA1C8F239EFE4900461AAD /* MainTabController.swift */,
 				3C7444AB2399489700EEAC81 /* DetailsViewController.swift */,
-				3CCB7D73239F893B007EE4BE /* NewViewController.swift */,
-				3CCB7D75239F8946007EE4BE /* ChartViewController.swift */,
 				3CE87C93239F9F3700162BF4 /* LineTableViewCell.swift */,
-				3CCCDC8323BFE19400A6E727 /* NSUIColor.swift */,
 				3CD7EA3E23C24D7C009F8AE9 /* ExportViewController.swift */,
 				3CD7EA4323C25454009F8AE9 /* LineTableViewCell2.swift */,
 				3CD7EA4723C25734009F8AE9 /* SettingViewController.swift */,
+				3CCB7D73239F893B007EE4BE /* NewViewController.swift */,
+				3CCB7D75239F8946007EE4BE /* ChartViewController.swift */,
+				3CCCDC8323BFE19400A6E727 /* NSUIColor.swift */,
 			);
 			path = MyAccountappIOS;
 			sourceTree = "<group>";

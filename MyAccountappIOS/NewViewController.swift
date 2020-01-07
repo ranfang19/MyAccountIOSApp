@@ -13,13 +13,10 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
 
     var id:Int=1
     
-    //Tab
     required init?(coder aDecoder:NSCoder){
         super.init(coder:aDecoder)
         tabBarItem = UITabBarItem(title:"New", image:UIImage(named:"pencil"),tag:2)
     }
-    
-    // segment
     
     var isExpense:Bool = false
     @IBAction func incomeExpense(_ sender: UISegmentedControl) {
@@ -33,15 +30,12 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         }
     }
     
-    // title
     @IBOutlet weak var titleTextField: UITextField!
     var titleFinal:String=""
     
-    // amount
     @IBOutlet weak var amountTextField: UITextField!
     var amountFinal:Double=0.00
     
-    // datePicker
     var year:String=""
     var month:String=""
     var day:String=""
@@ -64,7 +58,6 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         month = dateFormatter.string(from: datePicker.date)
         dateFormatter.dateFormat = "d"
         day = dateFormatter.string(from: datePicker.date)
-        
         datePickerIsHidden(status:true)
     }
     
@@ -72,7 +65,6 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         datePickerIsHidden(status:false)
         datePicker?.addTarget(self, action: #selector(NewViewController.dateChanged(datePicker:)), for: .valueChanged)
         let tapGesture = UITapGestureRecognizer(target:self,action:#selector(NewViewController.viewTapped(gestureRecognizer:)))
-        
         view.addGestureRecognizer(tapGesture)
         dateTextField.inputView = datePicker
     }
@@ -81,14 +73,12 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         view.endEditing(true)
     }
     
-    
     @objc func dateChanged(datePicker:UIDatePicker){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d/M/yyyy"
         dateTextField.text=dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
     }
-    
 
     func datePickerIsHidden(status:Bool){
         cancelDatePickerBtn.isHidden=status
@@ -102,10 +92,7 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         categoryPicker.isHidden=status
     }
     
-    
-    
-    
-    //categoryPicker
+
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var cancelCategoryPickerBtn: UIButton!
@@ -147,12 +134,9 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
     }
     
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
         titleTextField.text=""
         amountTextField.text=""
         
@@ -168,14 +152,10 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         month = dateFormatter.string(from: date)
         dateFormatter.dateFormat = "d"
         day = dateFormatter.string(from: date)
-        
         dateTextField.text=day+"/"+month+"/"+year
-        
         self.categoryPicker?.delegate = self
         self.categoryPicker?.dataSource = self
         pickerData = ["Transport", "Shopping", "Food", "Housing"]
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -202,7 +182,6 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         newLine.setValue(titleFinal, forKey: "title")
         newLine.setValue(yearFinal, forKey: "year")
         newLine.setValue(id, forKey: "id")
-        
         do {
             try context.save()
             print("Context saved")

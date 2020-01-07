@@ -27,8 +27,6 @@ class SettingViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: {(action:UIAlertAction!) in
             self.deleteAllData()
         }))
-
-        
         self.present(alert,animated:true,completion:nil)
     }
     
@@ -42,7 +40,6 @@ class SettingViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
-        
         do {
             data = try context.fetch(fetchRequest)
             if data.count>0 {
@@ -59,11 +56,4 @@ class SettingViewController: UIViewController {
 
         }
     }
-    
-    
-    
-
-    
-    
-
 }

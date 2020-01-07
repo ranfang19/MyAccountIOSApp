@@ -12,18 +12,14 @@ import CoreData
 
 
 class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
-
-    
-    
-    var isExpense:Bool = true
-
-    
     
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
+    
+    var isExpense:Bool = true
     
     var yearArray:[String] = [String]()
     var monthArray:[String] = [String]()
@@ -131,9 +127,6 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         return monthIntData
     }
     
-    
-    
-    
     @IBOutlet weak var pieChartView: PieChartView!
     
     func setupPieChart(transportData:Double,foodData:Double,shoppingData:Double,housingData:Double){
@@ -143,9 +136,7 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         pieChartView.rotationEnabled = false
         pieChartView.isUserInteractionEnabled = false
         pieChartView.legend.font = UIFont.systemFont(ofSize: 15)
-        
-        //pieChartView.legend.enabled = falses
-        
+                
         var entries:[PieChartDataEntry] = Array()
         if (transportData != 0){
             entries.append(PieChartDataEntry(value: transportData, label: "Transport:\(String(transportData))"))
@@ -173,11 +164,7 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         
         pieChartView.data=PieChartData(dataSet:dataSet)
         
-        
-        
     }
-    
-    
     
     required init?(coder aDecoder:NSCoder){
         super.init(coder:aDecoder)
@@ -196,17 +183,13 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-               
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
-        
         fetchRequest.returnsObjectsAsFaults = false
-        
         let predicateMonth = NSPredicate(format:"month == %d", monthInt)
         let predicateYear = NSPredicate(format:"year == %d", Int(yearData) ?? 2019)
         let predicateExpense = NSPredicate(format:"expense == %d", isExpense)
         let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateMonth, predicateYear,predicateExpense])
         fetchRequest.predicate = andPredicate
-        
         do {
             lines = try context.fetch(fetchRequest)
             for line in lines as! [NSManagedObject] {
@@ -240,7 +223,6 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         
         yearLabel.text = yearData
         monthLabel.text = monthData
-        
         pickerViewHiddenStatus(pvStatus: true)
 
         persistentContainer.loadPersistentStores { (persistentStoreDescription, error) in
@@ -258,7 +240,6 @@ class ChartViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         super.didReceiveMemoryWarning()
     }
     
-
 
 }
 

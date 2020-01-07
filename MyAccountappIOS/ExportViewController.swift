@@ -16,7 +16,6 @@ class ExportViewController: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
-
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     
@@ -24,21 +23,18 @@ class ExportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
+    
         persistentContainer.loadPersistentStores { (persistentStoreDescription, error) in
             if let error = error {
                 print("Unable to Load Persistent Store")
                 print("\(error), \(error.localizedDescription)")
                 }
             else {
-
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Line")
                 fetchRequest.returnsObjectsAsFaults = false
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "year", ascending: false),NSSortDescriptor(key: "month", ascending: false),NSSortDescriptor(key: "day", ascending: false),NSSortDescriptor(key: "id", ascending: true)]
-                
                 do {
                     self.lines = try context.fetch(fetchRequest)
                 } catch {
@@ -47,13 +43,7 @@ class ExportViewController: UIViewController {
                 self.activityIndicatorView?.stopAnimating()
             }
         }
-        
-        
     }
-
-    
-    
-
 }
 
 extension ExportViewController: UITableViewDataSource {
@@ -67,7 +57,6 @@ extension ExportViewController: UITableViewDataSource {
         }
         
         let line = lines[indexPath.row] as! NSManagedObject
-        
         cell.exportTitleLabel.text = line.value(forKey: "title") as? String
         
         if (line.value(forKey: "expense") as? Bool == true) {
