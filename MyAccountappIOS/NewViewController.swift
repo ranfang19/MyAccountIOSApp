@@ -171,27 +171,34 @@ class NewViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataS
         let dayFinal = Int(day) ?? 0
         let categoryFinal = categorySelected
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let newLine = NSEntityDescription.insertNewObject(forEntityName: "Line", into: context)
-        newLine.setValue(amountFinal, forKey: "amount")
-        newLine.setValue(categoryFinal, forKey: "category")
-        newLine.setValue(dayFinal, forKey: "day")
-        newLine.setValue(isExpense, forKey: "expense")
-        newLine.setValue(monthFinal, forKey: "month")
-        newLine.setValue(titleFinal, forKey: "title")
-        newLine.setValue(yearFinal, forKey: "year")
-        newLine.setValue(id, forKey: "id")
-        do {
-            try context.save()
-            print("Context saved")
-            self.showToast(message: "Context saved")
-            id = id + 1
-            titleTextField.text=""
-            amountTextField.text=""
-        } catch {
-            print ("ERREUR : impossible de sauvgarder mon context")
+        if ((titleFinal != "") && (amountFinal != nil) && (isExpense == true) && (categoryFinal != "")) || ((titleFinal != "") && (amountFinal != nil) && (isExpense == false)){
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let newLine = NSEntityDescription.insertNewObject(forEntityName: "Line", into: context)
+            newLine.setValue(amountFinal, forKey: "amount")
+            newLine.setValue(categoryFinal, forKey: "category")
+            newLine.setValue(dayFinal, forKey: "day")
+            newLine.setValue(isExpense, forKey: "expense")
+            newLine.setValue(monthFinal, forKey: "month")
+            newLine.setValue(titleFinal, forKey: "title")
+            newLine.setValue(yearFinal, forKey: "year")
+            newLine.setValue(id, forKey: "id")
+            do {
+                try context.save()
+                print("Context saved")
+                self.showToast(message: "Context saved")
+                id = id + 1
+                titleTextField.text=""
+                amountTextField.text=""
+            } catch {
+                print ("ERREUR : impossible de sauvgarder mon context")
+            }
         }
+        else {
+            self.showToast(message: "Please check")
+        }
+        
+
     }
     
     func showToast(message : String) {
